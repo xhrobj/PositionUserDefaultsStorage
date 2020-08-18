@@ -7,7 +7,7 @@
 import Foundation
 import GithubJobServices
 
-final class PositionUserDefaultsStorage: PositionStorageManager {
+public final class PositionUserDefaultsStorage: PositionStorageManager {
     
     private struct Position: PositionDTO, Codable {
         var id: String
