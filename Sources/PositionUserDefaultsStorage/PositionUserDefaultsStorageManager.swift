@@ -1,13 +1,13 @@
 //
-//  PositionUserDefaultsStorage.swift
-//  PositionUserDefaultsStorage
+//  PositionUserDefaultsStorageManager.swift
+//  PositionUserDefaultsStorageManager
 //
 //
 
 import Foundation
 import GithubJobServices
 
-public final class PositionUserDefaultsStorage: PositionStorageManager {
+public final class PositionUserDefaultsStorageManager: PositionStorageManager {
     
     private struct Position: PositionDTO, Codable {
         var id: String
@@ -21,22 +21,24 @@ public final class PositionUserDefaultsStorage: PositionStorageManager {
         var howToApply: String
         var companyLogo: String
         
-        public init(dto: PositionDTO) {
-               id = dto.id
-               type = dto.type
-               url = dto.url
-               company = dto.company
-               companyUrl = dto.companyUrl
-               location = dto.location
-               title = dto.title
-               description = dto.description
-               howToApply = dto.howToApply
-               companyLogo = dto.companyLogo
-           }
+        init(dto: PositionDTO) {
+            id = dto.id
+            type = dto.type
+            url = dto.url
+            company = dto.company
+            companyUrl = dto.companyUrl
+            location = dto.location
+            title = dto.title
+            description = dto.description
+            howToApply = dto.howToApply
+            companyLogo = dto.companyLogo
+        }
     }
     
     private let store: UserDefaults = UserDefaults.standard
     private let key = "positions"
+    
+    public init() {}
     
     public var allPositions: [PositionDTO] {
         if let positionsData = store.data(forKey: key),
