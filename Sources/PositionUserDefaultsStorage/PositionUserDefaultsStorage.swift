@@ -21,7 +21,7 @@ public final class PositionUserDefaultsStorage: PositionStorageManager {
         var howToApply: String
         var companyLogo: String
         
-        init(dto: PositionDTO) {
+        public init(dto: PositionDTO) {
                id = dto.id
                type = dto.type
                url = dto.url
@@ -38,7 +38,7 @@ public final class PositionUserDefaultsStorage: PositionStorageManager {
     private let store: UserDefaults = UserDefaults.standard
     private let key = "positions"
     
-    var allPositions: [PositionDTO] {
+    public var allPositions: [PositionDTO] {
         if let positionsData = store.data(forKey: key),
             let positions = try? JSONDecoder().decode([Position].self, from: positionsData) {
             return positions
@@ -46,15 +46,15 @@ public final class PositionUserDefaultsStorage: PositionStorageManager {
         return []
     }
     
-    func getPosition(id: String) -> PositionDTO? {
+    public func getPosition(id: String) -> PositionDTO? {
         allPositions.first{ $0.id == id }
     }
     
-    func findPositions(searchText: String) -> [PositionDTO] {
+    public func findPositions(searchText: String) -> [PositionDTO] {
         allPositions.filter{ $0.title.contains(searchText) }
     }
     
-    func filterPositions(by filter: PositionFilter) -> [PositionDTO] {
+    public func filterPositions(by filter: PositionFilter) -> [PositionDTO] {
         return allPositions.filter {
             $0.company == filter.company ||
             $0.title == filter.title ||
@@ -62,7 +62,7 @@ public final class PositionUserDefaultsStorage: PositionStorageManager {
         }
     }
     
-    func save(positions: [PositionDTO]) {
+    public func save(positions: [PositionDTO]) {
         DispatchQueue.global().async {
             if let encoded = try? JSONEncoder().encode(positions.map { Position(dto: $0) }) {
                 self.store.set(encoded, forKey: self.key)
