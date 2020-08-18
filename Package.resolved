@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "GithubJobServices",
+        "repositoryURL": "https://github.com/xhrobj/GithubJobServices.git",
+        "state": {
+          "branch": null,
+          "revision": "ba75fa809468d19c0dba1325a2f3c0113c86cab3",
+          "version": "1.0.0"
+        }
+      }
+    ]
+  },
+  "version": 1
+}
